@@ -16,16 +16,26 @@
             state = {
                 name: 'Gaurav',
                 age: 22,
+                message: ''
             }
 
-            changeHandler = (e) => {
+            changeNameHandler = (e) => {
                 this.setState({
                     name: e.target.value
                 })
             }
 
+            changeAgeHandler = (e) => {
+                this.setState({
+                    age: e.target.value
+                })
+            }
+
             submitHandler = (e) => {
                 e.preventDefault();
+                this.setState({
+                    message: "You have submitted the details successfully ! Name : "+this.state.name+" Age : "+this.state.age
+                })
                 console.log("Form Submitted",this.state.name)
             }
 
@@ -36,9 +46,16 @@
                         <p>Your age is {this.state.age}</p>
                         <form onSubmit={this.submitHandler}>
                             <label>Change Name: </label>
-                            <input type="text" onChange={this.changeHandler}/>
+                            <input type="text" onChange={this.changeNameHandler}/>
+                            <br/>
+                            <br/>
+                            <label>Change Age: </label>
+                            <input type="number" onChange={this.changeAgeHandler}/>
+                            <br/>
+                            <br/>
                             <button type="submit">Submit</button>
                         </form>
+                        <h3>{this.state.message}</h3>
                     </div>
                 )
             }
